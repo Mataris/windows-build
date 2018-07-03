@@ -1,5 +1,6 @@
-- hosts: windows
-  include_vars:
+- include_vars:
     file: ssh_var.yml
+
+- hosts: windows
   roles:
     - { role: win_service_config }
