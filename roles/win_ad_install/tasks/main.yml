@@ -22,4 +22,5 @@
 
 - name: Print out Domain List
   debug: var=domain_list
+
 ...
