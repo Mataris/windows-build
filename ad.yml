@@ -1,4 +1,4 @@
 - name: Install AD
   hosts: windows
   roles:
-    - { win_ad_install }
+    - { role: win_ad_install }
