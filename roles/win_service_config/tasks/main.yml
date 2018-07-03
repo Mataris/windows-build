@@ -4,7 +4,7 @@
     name: '{{ item }}'
     state: present
     params: "{{ parameters }}"
-  loop: {{ package_name }}
+  loop: "{{ package_name }}"
   when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
 
 - name: Enable Windows Service
