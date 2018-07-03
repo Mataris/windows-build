@@ -1,0 +1,16 @@
+- name: create group with delete protection enabled and custom attributes
+  win_domain_group:
+    name: "{{item.group_name}}"
+    scope: "{{item.group_scope}}"
+    state: present
+  loop: "{{user_info}}"
+
+
+- name: Ensure user created and use custom credentials to create the user
+  win_domain_user:
+    name: "{{item.name}}"
+    firstname: "{{item.firstname}}"
+    surname: "{{item.surname}}"
+    password: "{{item.password}}"
+    state: present
+  loop: "{{user_info}}"
