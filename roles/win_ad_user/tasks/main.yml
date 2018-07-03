@@ -13,4 +13,6 @@
     surname: "{{item.surname}}"
     password: "{{item.password}}"
     state: present
+    groups:
+      - "{{item.group_name}}"
   loop: "{{user_info}}"
