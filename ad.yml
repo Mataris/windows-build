@@ -2,5 +2,3 @@
   hosts: windows
   roles:
     - { role: win_ad_install }
-    
-  include: vars/my_ad_vars.yml
