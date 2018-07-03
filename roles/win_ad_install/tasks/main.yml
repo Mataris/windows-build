@@ -11,8 +11,8 @@
 
     - name: 
       win_domain:
-        dns_domain_name: {{ ad_domain_name }}
-        safe_mode_password: {{ ad_safe_mode_password }}
+        dns_domain_name: "{{ ad_domain_name }}"
+        safe_mode_password: "{{ ad_safe_mode_password }}"
         register: win_feature
 
     - name: Reboot if installing Active Directory Domain Services feature requires it
