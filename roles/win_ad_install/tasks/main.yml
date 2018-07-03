@@ -1,29 +1,25 @@
 ---
-- name: Configure Windows Server as Domain Controller
-  hosts: windows
-  tasks:
-  
-  - name: Install Active Directory Domain Services
-    win_feature:
-      name: AD-Domain-Services
-      state: present
-      include_sub_features: True
-      include_management_tools: True
+- name: Install Active Directory Domain Services
+  win_feature:
+    name: AD-Domain-Services
+    state: present
+    include_sub_features: True
+    include_management_tools: True
  
-  - name: Provide Active Directory Parameters
-    win_domain:
-      dns_domain_name: "{{ ad_domain_name }}"
-      safe_mode_password: "{{ ad_safe_mode_password }}"
-      register: win_feature
+- name: Provide Active Directory Parameters
+  win_domain:
+    dns_domain_name: "{{ ad_domain_name }}"
+    safe_mode_password: "{{ ad_safe_mode_password }}"
+    register: win_feature
 
-  - name: Reboot if installing Active Directory Domain Services feature requires it
-    win_reboot:
-    when: win_feature.reboot_required
+- name: Reboot if installing Active Directory Domain Services feature requires it
+  win_reboot:
+  when: win_feature.reboot_required
 
-  - name: Get Domain List
-    win_shell: nltest /dclist:"{{ ad_domain_name }}"
-    register: domain_list
+- name: Get Domain List
+  win_shell: nltest /dclist:"{{ ad_domain_name }}"
+  register: domain_list
 
-  - name: Print out Domain List
-    debug: var=domain_list
+- name: Print out Domain List
+  debug: var=domain_list
 ...
