@@ -1,5 +1,5 @@
 - name: Configure Windows Server as Domain Controller
-  hosts: Windows
+  hosts: windows
   tasks:
     - name: Install Active Directory Domain Services
       win_feature:
