@@ -1,0 +1,29 @@
+---
+- name: Install multiple packages
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+    params: "{{ parameters }}"
+  loop: {{ package_name }}
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+
+- name: Enable Windows Service
+  win_service:
+    name: "{{service_name}}"
+    start_mode: auto
+    state: started
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+
+- name: Firewall rule to allow Service
+  win_firewall_rule:
+    name: "{{ service_name }}"
+    localport: "{{ local_port }}"
+    action: allow
+    direction: in
+    protocol: "{{ protocol_name }}"
+    profiles: private
+    state: present
+    enabled: yes
+
+
+    
